@@ -13,6 +13,28 @@ namespace Calculator_API.Controllers
             var result = a + b;
             return Ok(new {a,b, result});
         }
+        [HttpGet(template: "rest")]
+        public IActionResult GetRest([FromQuery] int a, [FromQuery] int b)
+        {
+            var result = a - b;
+            return Ok(new {a,b, result});
+        }
+        [HttpGet(template: "prod")]
+        public IActionResult GetProd([FromQuery] int a, [FromQuery] int b)
+        {
+            var result = a * b;
+            return Ok(new {a,b, result});
+        }
+        [HttpGet(template: "div")]
+        public IActionResult GetDiv([FromQuery] int a, [FromQuery] int b)
+        {
+            if (b == 0) 
+            {
+                return BadRequest(new {error = "Division by zero"});
+            }
+            var result = a / b;
+            return Ok(new {a,b, result});
+        }
     }
 }
 
